@@ -1,7 +1,6 @@
 <style scoped>
 .layout-header-bar{
     background: #fff;
-    box-shadow: 0 1px 1px rgba(0,0,0,.1);
 }
 .layout{
     background: #f5f7f9;
@@ -29,7 +28,6 @@
 .content-bar{
   flex: 0;
   height: 55px;
-  box-shadow: 0 1px 1px rgba(0,0,0,.1);
 }
 </style>
 
@@ -65,7 +63,7 @@
               </Breadcrumb>
           </Header>
           <Content class="layout-header-bar content-bar">
-            <Row >
+            <Row style="box-shadow: 0 8px 6px rgba(0,0,0,.1);">
               <Col :md="{span:5}"  :lg="{span:4}" :xl="{span:3}" :xxl="{span:2}">
                   <div :style="{padding: '7px',marginLeft: '-15px'}">
                     <Dropdown style="margin-left: 20px">
@@ -82,28 +80,16 @@
               </Col>
               <Col :md="{span:19}"  :lg="{span:20}"  :xl="{span:21}" :xxl="{span:22}">
                 <div :style="{flex: '1',padding: '5px 5px 15px' ,whiteSpace: 'nowrap',overflow: 'auto'}">
-                  <Tag type="dot" closable color="success">标签二</Tag>
-                  <Tag type="dot" closable color="success">标签二</Tag>
-                  <Tag type="dot" closable color="success">标签二</Tag>
-                  <Tag type="dot" closable color="success">标签二</Tag>
-                  <Tag type="dot" closable color="success">标签二</Tag>
-                  <Tag type="dot" closable color="success">标签二</Tag>
-                  <Tag type="dot" closable color="success">标签二</Tag>
-                  <Tag type="dot" closable color="success">标签二</Tag>
-                  <Tag type="dot" closable color="success">标签二</Tag>
-                  <Tag type="dot" closable color="success">标签二</Tag>
-                  <Tag type="dot" closable color="success">标签二</Tag>
-                  <Tag type="dot" closable color="success">标签二</Tag>
-                  <Tag type="dot" closable color="success">标签二</Tag>
-                  <Tag type="dot" closable color="success">标签二</Tag>
-                  <Tag type="dot" closable color="success">标签二</Tag>
-                  <Tag type="dot" closable color="success">标签二</Tag>
-                  <Tag type="dot" closable color="success">标签二</Tag>
+                  <template v-for="( val,key ) in this.$store.state.App.tabList" >
+                      <router-link :key="key" :to="val.url">
+                        <Tag type="dot" :color="val.color">{{val.titleList[1]}}</Tag>
+                      </router-link>
+                  </template>
                 </div>
               </Col>
             </Row>
           </Content>
-          <Content :style="{ width:'100%',flex: '1',margin: '0',overflow: 'scroll',/*padding: '24px 24px 0 24px', */background: '#f5f7f9'}">
+          <Content :style="{ width:'100%',flex: '1',margin: '0',overflow: 'scroll',boxShadow: 'rgba(0, 0, 0, 0.1) 0px 8px 6px', background: '#f5f7f9'}">
             <router-view></router-view>
           </Content>
           <Footer class="layout-footer-center">2011-2016 &copy; TalkingData</Footer>
