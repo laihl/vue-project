@@ -24,6 +24,18 @@ export default {
         currentNav.color = 'primary'
         state.tabList.push(currentNav)
       }
+    },
+    closeTabs (state, name) {
+      let removeIndex = 0
+      for (let index = 0; index < state.tabList.length; index++) {
+        const tab = state.tabList[index]
+        if (tab.url === name) {
+          removeIndex = index
+          break
+        }
+      }
+      state.tabList.splice(removeIndex, 1)
+      console.log(state.tabList)
     }
   }
 }

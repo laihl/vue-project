@@ -79,17 +79,17 @@
                 </div>
               </Col>
               <Col :md="{span:19}"  :lg="{span:20}"  :xl="{span:21}" :xxl="{span:22}">
-                <div :style="{flex: '1',padding: '5px 5px 15px' ,whiteSpace: 'nowrap',overflow: 'auto'}">
+                <div :style="{flex: '1',padding: '5px 5px 0' ,whiteSpace: 'nowrap',overflow: 'auto'}">
                   <template v-for="( val,key ) in this.$store.state.App.tabList" >
                       <router-link :key="key" :to="val.url">
-                        <Tag type="dot" :color="val.color">{{val.titleList[1]}}</Tag>
+                        <Tag type="dot" closable :name="val.url" @on-close="tabCloseMethon" :color="val.color">{{val.titleList[1]}}</Tag>
                       </router-link>
                   </template>
                 </div>
               </Col>
             </Row>
           </Content>
-          <Content :style="{ width:'100%',flex: '1',margin: '0',overflow: 'scroll',boxShadow: 'rgba(0, 0, 0, 0.1) 0px 8px 6px', background: '#f5f7f9'}">
+          <Content :style="{ width:'100%',flex: '1',margin: '0',overflow: 'auto',boxShadow: 'rgba(0, 0, 0, 0.1) 0px 8px 6px', background: '#f5f7f9'}">
             <router-view></router-view>
           </Content>
           <Footer class="layout-footer-center">2011-2016 &copy; TalkingData</Footer>
@@ -111,6 +111,9 @@ export default {
   methods: {
     handleTabRemove (name) {
       this['tab' + name] = false
+    },
+    tabCloseMethon (event, name) {
+      this.$store.commit('closeTabs', name)
     }
   },
   computed: {
