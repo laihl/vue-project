@@ -81,7 +81,7 @@
                 </div>
               </Col>
               <Col :md="{span:19}"  :lg="{span:20}"  :xl="{span:21}" :xxl="{span:22}">
-                <div :style="{flex: '1',padding: '5px 5px 15px' ,whiteSpace: 'nowrap',overflow: 'auto'}">
+                <div :style="{flex: '1',padding: '5px 5px 0px' ,whiteSpace: 'nowrap',overflow: 'auto'}">
                   <Tag type="dot" closable color="success">标签二</Tag>
                   <Tag type="dot" closable color="success">标签二</Tag>
                   <Tag type="dot" closable color="success">标签二</Tag>
@@ -103,7 +103,7 @@
               </Col>
             </Row>
           </Content>
-          <Content :style="{ width:'100%',flex: '1',margin: '0',overflow: 'scroll',/*padding: '24px 24px 0 24px', */background: '#f5f7f9'}">
+          <Content :style="{ width:'100%',flex: '1',margin: '0',overflow: 'auto',/*padding: '24px 24px 0 24px', */background: '#f5f7f9'}">
             <router-view></router-view>
           </Content>
           <Footer class="layout-footer-center">2011-2016 &copy; TalkingData</Footer>
