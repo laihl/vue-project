@@ -40,7 +40,9 @@ let routes = {
         route.children.forEach(function (child) {
           pathMap[child.path] = {
             titleList: [ route.title, child.title ],
-            nameList: [ route.name, child.name ]
+            nameList: [ route.name, child.name ],
+            url: child.path,
+            iconType: child.iconType
           }
         })
       }
