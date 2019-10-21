@@ -82,7 +82,7 @@
                 <div :style="{flex: '1',padding: '5px 5px 0' ,whiteSpace: 'nowrap',overflow: 'auto'}">
                   <template v-for="( val,key ) in this.$store.state.App.tabList" >
                       <router-link :key="key" :to="val.url">
-                        <Tag type="dot" closable :name="val.url" @on-close="tabCloseMethon" :color="val.color">{{val.titleList[1]}}</Tag>
+                        <Tag type="dot" checkable :closable="key>0? true:false" :name="val.url" @on-close="tabCloseMethon" :color="val.color">{{val.titleList[1]}}</Tag>
                       </router-link>
                   </template>
                 </div>
@@ -113,6 +113,18 @@ export default {
       this['tab' + name] = false
     },
     tabCloseMethon (event, name) {
+      let tabList = this.$store.state.App.tabList
+      let tabIndex = 0
+      tabList.forEach((tab, index) => {
+        if (tab.url === this.$route.path) {
+          tabIndex = index
+        }
+      })
+      if (this.$route.path === name) {
+        let targetPath = tabList[tabIndex].url
+        console.log(targetPath)
+        this.$router.push({path: targetPath})
+      }
       this.$store.commit('closeTabs', name)
     }
   },

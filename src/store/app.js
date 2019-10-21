@@ -1,16 +1,15 @@
 import routeIndex from '../router/routes'
-
 let defaultCurrentNav = routeIndex.getRoutesPathTitleMap(routeIndex.routes[0].redirect).abbr
 
 try {
-  if (localStorage.currentNav) {
+  if (localStorage.currentNav && localStorage.currentNav !== 'undefined') {
     defaultCurrentNav = JSON.parse(localStorage.currentNav)
   }
 } catch (e) {}
 
 export default {
   state: {
-    currentNav: defaultCurrentNav.abbr,
+    currentNav: defaultCurrentNav,
     tabList: []
   },
   mutations: {
@@ -19,7 +18,6 @@ export default {
       try {
         localStorage.currentNav = JSON.stringify(currentNav)
       } catch (e) {}
-      console.log(state.tabList)
       if (!isTabListContained(state.tabList, currentNav)) {
         currentNav.color = 'primary'
         state.tabList.push(currentNav)
@@ -35,7 +33,6 @@ export default {
         }
       }
       state.tabList.splice(removeIndex, 1)
-      console.log(state.tabList)
     }
   }
 }
